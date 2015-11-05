@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PeopleSearch.Models.Person>
+
+@{
+	ViewBag.Title = "People Directory";
+}
+
+<h2>Index</h2>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+	@using (Html.BeginForm("Index", "People", FormMethod.Get))
+	{
+	<p>
+		First Name: @Html.TextBox("SearchString")
+		Last Name: @Html.TextBox("lastName") <br />
+		<input type="submit" value="Find" />
+	</p>
+	}
+</p>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.LastName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Address)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Age)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Interests)
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.FirstName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.LastName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Address)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Age)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Interests)
+		</td>
+		<td>
+			@Html.ActionLink("Edit", "Edit", new { id=item.PersonID }) |
+			@Html.ActionLink("Details", "Details", new { id=item.PersonID }) |
+			@Html.ActionLink("Delete", "Delete", new { id=item.PersonID })
+		</td>
+	</tr>
+}
+
+</table>
